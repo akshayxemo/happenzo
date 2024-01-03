@@ -2,6 +2,8 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { NavItems } from "./NavItems";
+import { MobileNav } from "./MobileNav";
 
 export const Header = () => {
   return (
@@ -12,13 +14,19 @@ export const Header = () => {
             src={"/assets/images/logo.svg"}
             width={144}
             height={54}
-            alt="Happenzo Logo"
+            alt="Happenzo-Logo"
+            priority={true}
           />
         </Link>
-
+        <SignedIn>
+          <nav className="md:flex-between hidden w-full max-w-xs">
+            <NavItems />
+          </nav>
+        </SignedIn>
         <div className="w-32 flex justify-end gap-3">
           <SignedIn>
             <UserButton afterSignOutUrl="/" />
+            <MobileNav />
           </SignedIn>
           <SignedOut>
             <Button asChild className="rounded-full" size={"lg"}>
